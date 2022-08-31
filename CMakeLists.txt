@@ -70,9 +70,9 @@ if (NOT (Qt5_FOUND OR Qt6_FOUND))
     endif()
 endif()
 
-if (Qt${QT_VERSION_MAJOR}Core_VERSION VERSION_LESS ${QT_MIN_VERSION})
-    message(FATAL_ERROR "Minimum supported Qt version is ${QT_MIN_VERSION}")
-endif()
+#if (Qt${QT_VERSION_MAJOR}Core_VERSION VERSION_LESS ${QT_MIN_VERSION})
+#    message(FATAL_ERROR "Minimum supported Qt version is ${QT_MIN_VERSION}")
+#endif()
 
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Concurrent REQUIRED)
 
