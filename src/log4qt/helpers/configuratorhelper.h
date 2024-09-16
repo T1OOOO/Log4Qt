@@ -21,6 +21,7 @@
 #ifndef LOG4QT_HELPERS_CONFIGURATORHELPER_H
 #define LOG4QT_HELPERS_CONFIGURATORHELPER_H
 
+#include "log4qt/log4qtdefs.h"
 #include "log4qt/log4qtshared.h"
 #include "log4qt/loggingevent.h"
 
@@ -62,10 +63,10 @@ public:
     typedef bool (*ConfigureFunc)(const QString &fileName);
 
 private:
-    ConfiguratorHelper(QObject *parent = nullptr);
+    explicit ConfiguratorHelper(QObject *parent = nullptr);
     virtual ~ConfiguratorHelper();
 
-    Q_DISABLE_COPY(ConfiguratorHelper)
+    Q_DISABLE_COPY_MOVE(ConfiguratorHelper)
 
 public:
 

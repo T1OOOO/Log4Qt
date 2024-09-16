@@ -21,6 +21,7 @@
 #ifndef LOG4QT_MDC_H
 #define LOG4QT_MDC_H
 
+#include "log4qtdefs.h"
 #include "log4qt.h"
 
 #include <QString>
@@ -39,7 +40,7 @@ class LOG4QT_EXPORT MDC
 {
 private:
     MDC();
-    Q_DISABLE_COPY(MDC)
+    Q_DISABLE_COPY_MOVE(MDC)
 
 public:
     static QString get(const QString &key);

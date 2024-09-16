@@ -22,6 +22,7 @@
 #define LOG4QT_APPENDER_H
 
 #include "layout.h"
+#include "log4qtdefs.h"
 #include "log4qtsharedptr.h"
 #include "spi/filter.h"
 #include "helpers/classlogger.h"
@@ -92,7 +93,7 @@ protected:
     Logger *logger() const;
 
 private:
-    Q_DISABLE_COPY(Appender)
+    Q_DISABLE_COPY_MOVE(Appender)
     mutable ClassLogger mLog4QtClassLogger;
 };
 

@@ -21,6 +21,7 @@
 #ifndef LOG4QT_PATTERNFORMATTER_H
 #define LOG4QT_PATTERNFORMATTER_H
 
+#include "log4qt/log4qtdefs.h"
 #include "log4qt/log4qtshared.h"
 
 #include <QList>
@@ -54,7 +55,7 @@ public:
     /*!
      * Creates a PatternFormatter using a the specified \a pattern.
      */
-    PatternFormatter(const QString &pattern);
+    explicit PatternFormatter(const QString &pattern);
 
     /*!
      * Destroys the PatternFormatter and all PatternConverter.
@@ -62,7 +63,7 @@ public:
     virtual ~PatternFormatter();
 
 private:
-    Q_DISABLE_COPY(PatternFormatter)
+    Q_DISABLE_COPY_MOVE(PatternFormatter)
 
 public:
     /*!
@@ -133,7 +134,7 @@ private:
 } // namespace Log4Qt
 
 
-Q_DECLARE_TYPEINFO(Log4Qt::PatternFormatter, Q_MOVABLE_TYPE);
+Q_DECLARE_TYPEINFO(Log4Qt::PatternFormatter, Q_COMPLEX_TYPE);
 
 
 #endif // LOG4QT_PATTERNFORMATTER_H

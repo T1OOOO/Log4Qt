@@ -4,13 +4,17 @@ All notable changes to this project will be documented in this file.
 ----
 ## [v1.6.0] - ??
 ### Improvements
+
+- if console is blocked by debugger use OutputDebugString (win)
 - Support for Qt6
 - Minimum required Qt version is 5.12
 - Add case sensitivity option in Stringmatchfilter
 - cmake: replace BUILD_STATIC_LOG4CXX_LIB with standard BUILD_SHARED_LIBS
 
 ### Fixed
-- Replace deprecated Qt 5.15 stuff
+- TTCCLayout crash fix (#69)
+- Fixes for Qt6.7
+- Replace deprecated Qt 5.15 stu
 
 ## [v1.5.1] - 14.02.2020
 ### Improvements

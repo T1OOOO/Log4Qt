@@ -21,6 +21,7 @@
 #ifndef LOG4QT_OPTIONCONVERTER_H
 #define LOG4QT_OPTIONCONVERTER_H
 
+#include "log4qt/log4qtdefs.h"
 #include "log4qt/log4qtshared.h"
 #include "log4qt/level.h"
 
@@ -45,7 +46,7 @@ class LOG4QT_EXPORT OptionConverter
 {
 private:
     OptionConverter();
-    Q_DISABLE_COPY(OptionConverter)
+
 public:
     static QString findAndSubst(const Properties &properties,
                                 const QString &key);
@@ -143,7 +144,7 @@ public:
 } // namespace Log4Qt
 
 
-Q_DECLARE_TYPEINFO(Log4Qt::OptionConverter, Q_MOVABLE_TYPE);
+Q_DECLARE_TYPEINFO(Log4Qt::OptionConverter, Q_COMPLEX_TYPE);
 
 
 #endif // LOG4QT_OPTIONCONVERTER_H

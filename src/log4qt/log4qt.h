@@ -475,7 +475,6 @@
 #   error "Log4Qt requires at least clang version 3.3 or higher for used c++11 features"
 #endif
 
-
 /*
    LOG4QT_VERSION is (major << 16) + (minor << 8) + patch.
 */

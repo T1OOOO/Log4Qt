@@ -21,7 +21,8 @@
 #ifndef LOG4QT_NDC_H
 #define LOG4QT_NDC_H
 
-#include "log4qt.h"
+#include "log4qtdefs.h"
+#include "log4qtshared.h"
 
 #include <QString>
 #include <QStack>
@@ -42,7 +43,7 @@ class LOG4QT_EXPORT NDC
 {
 private:
     NDC();
-    Q_DISABLE_COPY(NDC)
+    Q_DISABLE_COPY_MOVE(NDC)
 
 public:
     static void clear();

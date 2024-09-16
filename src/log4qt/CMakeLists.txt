@@ -80,6 +80,7 @@ set(log4qt_HEADERS
     hierarchy.h
     layout.h
     level.h
+    log4qtdefs.h
     log4qt.h
     log4qtshared.h
     log4qtsharedptr.h
@@ -147,6 +148,7 @@ add_library(log4qt ${log4qt_SOURCES} ${log4qt_HEADERS} ${log4qt_HEADERS_helpers}
 target_link_libraries(log4qt
     PUBLIC
         Qt${QT_VERSION_MAJOR}::Core
+    PRIVATE
         Qt${QT_VERSION_MAJOR}::Concurrent
 )
 

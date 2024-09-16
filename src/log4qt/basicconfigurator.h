@@ -21,6 +21,7 @@
 #ifndef LOG4QT_BASICCONFIGURATOR_H
 #define LOG4QT_BASICCONFIGURATOR_H
 
+#include "log4qtdefs.h"
 #include "log4qt.h"
 
 namespace Log4Qt
@@ -37,7 +38,7 @@ class Appender;
 class LOG4QT_EXPORT BasicConfigurator
 {
 private:
-    Q_DISABLE_COPY(BasicConfigurator)
+    Q_DISABLE_COPY_MOVE(BasicConfigurator)
 
 public:
     static bool configure();

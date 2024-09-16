@@ -83,7 +83,7 @@ public:
 
     ~ConsoleAppender() override;
 private:
-    Q_DISABLE_COPY(ConsoleAppender)
+    Q_DISABLE_COPY_MOVE(ConsoleAppender)
 
 public:
     QString target() const;
@@ -99,6 +99,7 @@ public:
 
 protected:
     void closeStream();
+    void append(const LoggingEvent &event) override;
 
 private:
     volatile Target mTarget;
