@@ -1,5 +1,8 @@
-cmake_minimum_required(VERSION 3.3.0)
+cmake_minimum_required(VERSION 3.10)
 project(Log4Qt VERSION 1.6.0)
+if(POLICY CMP0071)
+    cmake_policy(SET CMP0071 NEW)
+endif()
 
 set(LOG4QT_STANDALONE_BUILD OFF)
 if(PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
@@ -25,10 +28,13 @@ if(BUILD_STATIC_LOG4CXX_LIB)
 endif()
 
 # With Database logging support or without
-option(BUILD_WITH_DB_LOGGING "Build with database logging support, link against Qt sql lib (default: on)" OFF)
+option(BUILD_WITH_DB_LOGGING "Build with database logging support, link against Qt sql lib (default: off)" OFF)
 
 # With Telnet logging support or without
-option(BUILD_WITH_TELNET_LOGGING "Build with telnet logging support, link against Qt network lib (default: on)" OFF)
+option(BUILD_WITH_TELNET_LOGGING "Build with telnet logging support, link against Qt network lib (default: on)" ON)
+
+# With qml logging support or without
+option(BUILD_WITH_QML_LOGGING "Build with qml logging support, link against Qt qml lib (default: on)" ON)
 
 # Enable documentation generation with doxygen
 OPTION(BUILD_WITH_DOCS "Enable documentation generation (default: off)" OFF)
@@ -81,6 +87,9 @@ endif()
 if(BUILD_WITH_TELNET_LOGGING)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network REQUIRED)
 endif()
+if(BUILD_WITH_QML_LOGGING)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Qml REQUIRED)
+endif()
 
 add_definitions(-DQT_USE_QSTRINGBUILDER)
 add_definitions(-DQT_NO_CAST_TO_ASCII)
@@ -122,7 +131,7 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   # disable 4127: conditional expression is constant
   #         4512: assignment operator could not be generated
   #         4267: conversion from 'size_t' to 'type', possible loss of data
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -wd4127 -wd4512 -wd4267 -wd4913 -we4265")
+  set(GENERAL_MSVC_CXX_FLAGS "/wd4127 /wd4512 /wd4267 /wd4913 /w34265 /we4265 /permissive- /W4")
 
   string(REGEX REPLACE "/W[0-3]" "/W4" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 

@@ -33,6 +33,10 @@
 
 #include <QFile>
 
+#if (__cplusplus >= 201703L) // C++17 or later
+#include <utility>
+#endif
+
 namespace Log4Qt
 {
 
@@ -235,6 +239,7 @@ void PropertyConfigurator::configureGlobalSettings(const Properties &properties,
     value = properties.property(key_filterRules);
     if (!value.isNull())
     {
+        value.replace(";", "\n");
         LogManager::setFilterRules(value);
         staticLogger()->debug(QStringLiteral("Set filter rules to %1"), LogManager::filterRules());
     }
@@ -263,7 +268,12 @@ void PropertyConfigurator::configureNonRootElements(const Properties &properties
     // - Parse logger additivity
 
     QStringList keys = properties.propertyNames();
+
+#if (__cplusplus >= 201703L)
+    for (const auto &key : std::as_const(keys))
+#else
     for (const auto &key : qAsConst(keys))
+#endif
     {
         QString java_name;
         if (key.startsWith(logger_prefix))
@@ -516,7 +526,12 @@ void PropertyConfigurator::setProperties(const Properties &properties,
                     prefix);
 
     QStringList keys = properties.propertyNames();
+
+#if (__cplusplus >= 201703L)
+    for (const auto &key : std::as_const(keys))
+#else
     for (const auto &key : qAsConst(keys))
+#endif
     {
         if (!key.startsWith(prefix))
             continue;
@@ -546,7 +561,7 @@ void PropertyConfigurator::startCaptureErrors()
 bool PropertyConfigurator::stopCaptureErrors()
 {
     Q_ASSERT_X(mpConfigureErrors, "PropertyConfigurator::stopCaptureErrors()", "mpConfigureErrors must not be empty.");
-    auto *listAppender = static_cast<ListAppender *>(mpConfigureErrors.data());
+    const auto *listAppender = static_cast<ListAppender *>(mpConfigureErrors.data());
     LogManager::logLogger()->removeAppender(mpConfigureErrors);
     ConfiguratorHelper::setConfigureError(listAppender->list());
     bool result = (listAppender->list().count() == 0);

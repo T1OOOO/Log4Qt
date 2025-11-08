@@ -36,7 +36,7 @@ class DailyFileAppenderTest : public QObject
 {
     Q_OBJECT
 public:
-    DailyFileAppenderTest(QObject * parent = nullptr) :
+    explicit DailyFileAppenderTest(QObject * parent = nullptr) :
                                 QObject(parent),
                                 mLogDirectory(nullptr),
                                 mAppender(nullptr) {}
@@ -153,7 +153,7 @@ namespace
 void createFile(const QString& fileName)
 {
     QFile file(fileName);
-    file.open(QFile::WriteOnly);
+    QVERIFY(file.open(QFile::WriteOnly));
     file.close();
     QVERIFY2(file.exists(), qPrintable(fileName));
 }
